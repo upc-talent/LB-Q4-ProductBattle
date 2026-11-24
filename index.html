@@ -12,7 +12,7 @@
 const CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbyhEKHF8DKHALww0yj6vOuUxE7uaWedK_iOgf4BSCv9dZcO4grT8LHhWNSaIJsewTtP4g/exec',
   IMG_BASE: 'img/',
-  POLL: { learner: 3500, trainerLive: 2000, trainerIdle: 4000, board: 5000, hidden: 12000 }
+  POLL: { learner: 5000, trainerLive: 2000, trainerIdle: 4000, board: 5000, hidden: 12000, lbSpread: 4000 }
 };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
@@ -100,7 +100,6 @@ img{display:block;max-width:100%}
 /* landing */
 .hero{width:min(440px,100%);padding:30px 28px}
 .hero .logo{height:46px;margin:0 auto 14px}
-.hero .vs{width:84px;margin:0 auto 6px;animation:pop .8s var(--ease) both}
 .hero .title{text-align:center;margin-bottom:6px}
 .hero .sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:22px}
 .seg{display:grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:14px;background:rgba(34,57,116,.07);margin-bottom:20px;position:relative}
@@ -137,42 +136,6 @@ img{display:block;max-width:100%}
 .kbd{font-size:11px;color:var(--muted)}
 .kbd b{border:1px solid var(--line);border-radius:6px;padding:1px 6px;background:rgba(255,255,255,.7)}
 
-/* battle header */
-.bhead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-.bnum{background:var(--navy);color:#fff;font-weight:700;font-size:12px;letter-spacing:.12em;padding:6px 12px;border-radius:8px}
-.blabel{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--acc);text-transform:uppercase}
-.case{font-size:clamp(24px,3vw,38px);font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.15}
-.stembar{position:relative;display:flex;align-items:center;min-height:54px;padding:12px 96px 12px 22px;border-radius:14px;color:#fff;font-weight:600;font-size:clamp(15px,1.6vw,20px);
-  background:linear-gradient(100deg,#0f2a5c 0%,color-mix(in srgb,var(--acc) 75%,#0f2a5c) 100%);box-shadow:0 12px 28px rgba(15,42,92,.25);margin-bottom:18px}
-.stembar img{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:92px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));animation:vsIn .9s var(--ease) both}
-@keyframes vsIn{from{opacity:0;transform:translateY(-50%) scale(.3) rotate(-20deg)}}
-
-/* product arena */
-.arena{display:flex;align-items:stretch;gap:0}
-.arena .vsdot{flex:none;align-self:center;width:34px;height:34px;margin:0 -8px;z-index:2;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;
-  background:linear-gradient(140deg,var(--navy),var(--blue));box-shadow:0 4px 12px rgba(34,57,116,.3);border:2px solid #fff;margin-bottom:58px}
-.pcard{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;border:0;background:none;text-align:center;cursor:default;transition:transform .4s var(--ease),opacity .4s,filter .4s;animation:viewIn .6s var(--ease) both}
-.pcard:nth-child(3){animation-delay:.08s}.pcard:nth-child(5){animation-delay:.16s}.pcard:nth-child(7){animation-delay:.24s}
-.pc-stage{position:relative;height:clamp(200px,26vw,300px);border-radius:18px;overflow:hidden;
-  background:radial-gradient(120% 80% at 50% 100%,rgba(120,220,255,.35),transparent 60%),linear-gradient(160deg,#0f2a5c 0%,#155e8c 55%,#0c7f8a 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 28px rgba(15,42,92,.22);transition:box-shadow .4s,transform .4s var(--ease)}
-.pc-stage::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 2px,transparent 2px 18px)}
-.pc-let{position:absolute;top:10px;left:10px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:700;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.2)}
-.pc-pod{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:82%;z-index:1}
-.pc-prod{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);max-width:70%;height:64%;object-fit:contain;z-index:2;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35));animation:rise .9s var(--ease) both}
-.pc-empty{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);z-index:2;font-size:44px;color:rgba(255,255,255,.55);font-weight:700}
-@keyframes rise{from{opacity:0;transform:translate(-50%,20px)}}
-.pc-seal{position:absolute;right:8px;top:8px;width:64px;z-index:4;animation:pop .6s var(--ease) both;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
-.pc-name{font-weight:700;font-size:clamp(13px,1.2vw,16px);color:var(--navy);line-height:1.3;min-height:2.6em;padding:0 4px}
-.pc-bar{position:relative;height:30px;border-radius:10px;background:rgba(34,57,116,.08);overflow:hidden;display:none}
-.pc-bar i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 60%,white));transition:width .9s var(--ease)}
-.pc-bar span{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;height:100%;padding:0 10px;font-size:13px;font-weight:700;color:var(--navy)}
-.bars .pc-bar{display:block}
-.pcard.correct .pc-stage{box-shadow:0 0 0 4px var(--teal),0 18px 40px rgba(0,169,155,.35)}
-.pcard.correct .pc-let{background:var(--teal);color:#fff}
-.pcard.dim{opacity:.5;filter:saturate(.5)}
-@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.15)}}
-
 /* live counter */
 .counter{display:flex;align-items:center;gap:16px;margin-top:18px;padding:14px 18px}
 .ring{position:relative;width:58px;height:58px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(var(--acc) 0%,rgba(34,57,116,.08) 0)}
@@ -193,39 +156,9 @@ img{display:block;max-width:100%}
 .pname{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--glass-border);font-weight:600;font-size:14px;animation:pop .5s var(--ease) both}
 .bigcount{font-size:64px;font-weight:700;color:var(--navy);line-height:1}
 
-/* discussion (FAB) */
-.disc{display:grid;grid-template-columns:minmax(220px,34%) 1fr;gap:24px;align-items:start}
-.best .pc-stage{height:clamp(240px,30vw,340px)}
-.best .tag{position:absolute;left:12px;top:12px;z-index:3;background:#fff;color:var(--navy);font-weight:700;font-size:12px;letter-spacing:.1em;padding:6px 10px;border-radius:8px}
-.best .pc-name{margin-top:10px;font-size:clamp(15px,1.4vw,18px)}
-.fab{display:grid;gap:14px}
-.fabrow{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;padding:16px 18px;border-radius:16px;animation:viewIn .6s var(--ease) both;border:1px solid rgba(255,255,255,.8)}
-.fabrow:nth-child(2){animation-delay:.12s}.fabrow:nth-child(3){animation-delay:.24s}
-.fabrow img{width:46px;height:46px;border-radius:50%}
-.fabrow .k{font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:4px}
-.fabrow .t{font-size:clamp(15px,1.5vw,19px);line-height:1.75;font-weight:500;color:var(--ink)}
-.fabrow.f{background:linear-gradient(90deg,rgba(24,140,205,.08),rgba(24,140,205,.18))}.fabrow.f .k{color:var(--blue)}
-.fabrow.a{background:linear-gradient(90deg,rgba(248,153,29,.08),rgba(248,153,29,.2))}.fabrow.a .k{color:#c8700b}
-.fabrow.b{background:linear-gradient(90deg,rgba(0,169,155,.08),rgba(0,169,155,.2))}.fabrow.b .k{color:#007d72}
-.referral{display:grid;grid-template-columns:minmax(180px,30%) 1fr;gap:24px;align-items:center}
-.referral img{width:100%;max-width:300px;margin:auto;animation:pop .8s var(--ease) both}
-.referral .dec{font-size:clamp(18px,2vw,26px);font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:14px}
-.referral .why{background:var(--blue);color:#fff;border-radius:16px;padding:16px 20px;font-size:clamp(15px,1.5vw,19px);line-height:1.75;box-shadow:0 10px 24px rgba(24,140,205,.3)}
-
 /* learner */
 .lwrap{max-width:560px;margin:0 auto;padding:14px 14px 0}
 .lcard{padding:18px}
-.larena{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.larena .pcard{cursor:pointer;gap:6px}
-.larena .pc-stage{height:170px;border-radius:16px}
-.larena .pc-name{font-size:13px;min-height:2.6em}
-.larena .pc-seal{width:46px}
-.larena.locked .pcard{cursor:default}
-.larena:not(.locked) .pcard:hover .pc-stage{transform:translateY(-3px)}
-.pcard.sel .pc-stage{box-shadow:0 0 0 4px var(--orange),0 14px 30px rgba(248,153,29,.35);transform:translateY(-3px)}
-.pcard.sel .pc-let{background:var(--orange);color:#fff}
-.pcard .mine{display:none;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--orange);border-radius:6px;padding:2px 8px;margin:0 auto}
-.pcard.sel .mine{display:inline-block}
 .submitbar{position:sticky;bottom:0;z-index:30;margin:14px -14px 0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));
   background:rgba(255,255,255,.75);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.9);display:flex;gap:10px;align-items:center}
 .submitbar .hint{flex:1;font-size:13px;color:var(--muted);font-weight:600}
@@ -246,12 +179,6 @@ img{display:block;max-width:100%}
 .scorebar .glass{flex:1;padding:12px 14px;text-align:center;border-radius:16px}
 .scorebar b{display:block;font-size:24px;color:var(--navy);font-weight:700}
 .scorebar span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.lcard .case{font-size:24px;margin-bottom:10px}
-.lcard .stembar{min-height:46px;padding:10px 70px 10px 16px;font-size:15px;margin-bottom:14px}
-.lcard .stembar img{width:66px}
-.lcard .disc,.lcard .referral{grid-template-columns:1fr}
-.lcard .best .pc-stage{height:220px}
-.mypick{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.75);margin-bottom:14px;font-weight:600;font-size:14px}
 
 /* leaderboard */
 .fab-btn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;width:62px;height:62px;border-radius:50%;border:0;cursor:pointer;
@@ -338,6 +265,83 @@ body.has-submit .fab-btn{bottom:calc(92px + env(safe-area-inset-bottom))}
   .runrow{grid-template-columns:1fr;gap:10px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.tstage{padding:24px}
+
+@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.15)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.hero .vs{width:84px;margin:0 auto 6px;animation:pop .8s var(--ease) both}
+/* battle header */
+.bhead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.bnum{background:var(--navy);color:#fff;font-weight:700;font-size:12px;letter-spacing:.12em;padding:6px 12px;border-radius:8px}
+.blabel{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--acc);text-transform:uppercase}
+.case{font-size:clamp(24px,3vw,38px);font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.15}
+.stembar{position:relative;display:flex;align-items:center;min-height:54px;padding:12px 96px 12px 22px;border-radius:14px;color:#fff;font-weight:600;font-size:clamp(15px,1.6vw,20px);
+  background:linear-gradient(100deg,#0f2a5c 0%,color-mix(in srgb,var(--acc) 75%,#0f2a5c) 100%);box-shadow:0 12px 28px rgba(15,42,92,.25);margin-bottom:18px}
+.stembar img{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:92px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));animation:vsIn .9s var(--ease) both}
+@keyframes vsIn{from{opacity:0;transform:translateY(-50%) scale(.3) rotate(-20deg)}}
+
+/* product arena */
+.arena{display:flex;align-items:stretch;gap:0}
+.arena .vsdot{flex:none;align-self:center;width:34px;height:34px;margin:0 -8px;z-index:2;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;
+  background:linear-gradient(140deg,var(--navy),var(--blue));box-shadow:0 4px 12px rgba(34,57,116,.3);border:2px solid #fff;margin-bottom:58px}
+.pcard{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;border:0;background:none;text-align:center;cursor:default;transition:transform .4s var(--ease),opacity .4s,filter .4s;animation:viewIn .6s var(--ease) both}
+.pcard:nth-child(3){animation-delay:.08s}.pcard:nth-child(5){animation-delay:.16s}.pcard:nth-child(7){animation-delay:.24s}
+.pc-stage{position:relative;height:clamp(200px,26vw,300px);border-radius:18px;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% 100%,rgba(120,220,255,.35),transparent 60%),linear-gradient(160deg,#0f2a5c 0%,#155e8c 55%,#0c7f8a 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 28px rgba(15,42,92,.22);transition:box-shadow .4s,transform .4s var(--ease)}
+.pc-stage::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 2px,transparent 2px 18px)}
+.pc-let{position:absolute;top:10px;left:10px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:700;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.pc-pod{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:82%;z-index:1}
+.pc-prod{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);max-width:70%;height:64%;object-fit:contain;z-index:2;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35));animation:rise .9s var(--ease) both}
+.pc-empty{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);z-index:2;font-size:44px;color:rgba(255,255,255,.55);font-weight:700}
+@keyframes rise{from{opacity:0;transform:translate(-50%,20px)}}
+.pc-seal{position:absolute;right:8px;top:8px;width:64px;z-index:4;animation:pop .6s var(--ease) both;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
+.pc-name{font-weight:700;font-size:clamp(13px,1.2vw,16px);color:var(--navy);line-height:1.3;min-height:2.6em;padding:0 4px}
+.pc-bar{position:relative;height:30px;border-radius:10px;background:rgba(34,57,116,.08);overflow:hidden;display:none}
+.pc-bar i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 60%,white));transition:width .9s var(--ease)}
+.pc-bar span{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;height:100%;padding:0 10px;font-size:13px;font-weight:700;color:var(--navy)}
+.bars .pc-bar{display:block}
+.pcard.correct .pc-stage{box-shadow:0 0 0 4px var(--teal),0 18px 40px rgba(0,169,155,.35)}
+.pcard.correct .pc-let{background:var(--teal);color:#fff}
+.pcard.dim{opacity:.5;filter:saturate(.5)}
+@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.15)}}
+
+/* discussion (FAB) */
+.disc{display:grid;grid-template-columns:minmax(220px,34%) 1fr;gap:24px;align-items:start}
+.best .pc-stage{height:clamp(240px,30vw,340px)}
+.best .tag{position:absolute;left:12px;top:12px;z-index:3;background:#fff;color:var(--navy);font-weight:700;font-size:12px;letter-spacing:.1em;padding:6px 10px;border-radius:8px}
+.best .pc-name{margin-top:10px;font-size:clamp(15px,1.4vw,18px)}
+.fab{display:grid;gap:14px}
+.fabrow{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;padding:16px 18px;border-radius:16px;animation:viewIn .6s var(--ease) both;border:1px solid rgba(255,255,255,.8)}
+.fabrow:nth-child(2){animation-delay:.12s}.fabrow:nth-child(3){animation-delay:.24s}
+.fabrow img{width:46px;height:46px;border-radius:50%}
+.fabrow .k{font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:4px}
+.fabrow .t{font-size:clamp(15px,1.5vw,19px);line-height:1.75;font-weight:500;color:var(--ink)}
+.fabrow.f{background:linear-gradient(90deg,rgba(24,140,205,.08),rgba(24,140,205,.18))}.fabrow.f .k{color:var(--blue)}
+.fabrow.a{background:linear-gradient(90deg,rgba(248,153,29,.08),rgba(248,153,29,.2))}.fabrow.a .k{color:#c8700b}
+.fabrow.b{background:linear-gradient(90deg,rgba(0,169,155,.08),rgba(0,169,155,.2))}.fabrow.b .k{color:#007d72}
+.referral{display:grid;grid-template-columns:minmax(180px,30%) 1fr;gap:24px;align-items:center}
+.referral img{width:100%;max-width:300px;margin:auto;animation:pop .8s var(--ease) both}
+.referral .dec{font-size:clamp(18px,2vw,26px);font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:14px}
+.referral .why{background:var(--blue);color:#fff;border-radius:16px;padding:16px 20px;font-size:clamp(15px,1.5vw,19px);line-height:1.75;box-shadow:0 10px 24px rgba(24,140,205,.3)}
+
+.larena{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.larena .pcard{cursor:pointer;gap:6px}
+.larena .pc-stage{height:170px;border-radius:16px}
+.larena .pc-name{font-size:13px;min-height:2.6em}
+.larena .pc-seal{width:46px}
+.larena.locked .pcard{cursor:default}
+.larena:not(.locked) .pcard:hover .pc-stage{transform:translateY(-3px)}
+.pcard.sel .pc-stage{box-shadow:0 0 0 4px var(--orange),0 14px 30px rgba(248,153,29,.35);transform:translateY(-3px)}
+.pcard.sel .pc-let{background:var(--orange);color:#fff}
+.pcard .mine{display:none;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--orange);border-radius:6px;padding:2px 8px;margin:0 auto}
+.pcard.sel .mine{display:inline-block}
+.lcard .case{font-size:24px;margin-bottom:10px}
+.lcard .stembar{min-height:46px;padding:10px 70px 10px 16px;font-size:15px;margin-bottom:14px}
+.lcard .stembar img{width:66px}
+.lcard .disc,.lcard .referral{grid-template-columns:1fr}
+.lcard .best .pc-stage{height:220px}
+.mypick{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.75);margin-bottom:14px;font-weight:600;font-size:14px}
 </style>
 </head>
 <body>
@@ -469,7 +473,7 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) Poll
 
 function handleErr(e, quiet) {
   const m = (e && e.message) || String(e);
-  if (m === 'AUTH') { store.del('pb_trainer'); toast('Session expired — please log in again'); return goLanding('trainer'); }
+  if (m === 'AUTH') { store.del(SK.trainer); toast('Session expired — please log in again'); return goLanding('trainer'); }
   if (!quiet) toast(m === 'BUSY' ? 'Server is busy, please try again' : (/abort|fetch|network/i.test(m) ? 'Connection problem — retrying' : m));
 }
 
@@ -517,35 +521,65 @@ function confirmBox(title, body, okLabel, cancelLabel) {
   });
 }
 
-/* ============================ shared battle UI ============================ */
-function battleHead(it) {
-  const kind = it.type === 'Question' ? 'THE PRODUCT BATTLE' : (it.fab && it.fab.decision ? 'REFERRAL' : 'FAB REFLECTION');
-  return `<div class="bhead"><span class="bnum">BATTLE ${pad2(it.battle)}</span><span class="blabel">${kind} / ${esc(it.round)}</span></div>
-    <div class="case">${esc(it.title)}</div>`;
-}
-function stemBar(it) { return `<div class="stembar" dir="${dir(it.stem)}">${esc(it.stem)}<img src="${img('vs.webp')}" alt=""></div>`; }
+/* ============================ activity module ============================ */
+/* ---------- THE PRODUCT BATTLE screens ---------- */
+const ACT = (() => {
+  const head = it => {
+    const kind = it.scored ? 'THE PRODUCT BATTLE' : (it.fab && it.fab.decision ? 'REFERRAL' : 'FAB REFLECTION');
+    return `<div class="bhead"><span class="bnum">BATTLE ${pad2(it.battle)}</span><span class="blabel">${kind} / ${esc(it.round)}</span></div><div class="case">${esc(it.title)}</div>`;
+  };
+  const stemBar = it => `<div class="stembar" dir="${dir(it.stem)}">${esc(it.stem)}<img src="${img('vs.webp')}" alt=""></div>`;
+  const stage = (src, letter, extra) => `<div class="pc-stage">${letter ? `<span class="pc-let">${letter}</span>` : ''}<img class="pc-pod" src="${img('podium.webp')}" alt="">
+    ${src ? `<img class="pc-prod" src="${img(src)}" alt="">` : '<span class="pc-empty">?</span>'}${extra || ''}</div>`;
+  const optionsHTML = (it, vs) => Object.keys(it.options).map((k, i) => {
+    const o = it.options[k];
+    return (i && vs ? '<span class="vsdot">VS</span>' : '') +
+      `<button class="pcard" data-k="${k}" type="button">${stage(o.img, k)}<div class="pc-name" dir="auto">${esc(o.t)}</div><span class="mine">Your pick</span>${barHTML()}</button>`;
+  }).join('');
+  const discussion = it => {
+    const f = it.fab || {};
+    if (f.decision || f.reason) {
+      return `<div class="referral"><img src="${img(f.img || 'referral.webp')}" alt="">
+        <div><div class="dec" dir="${dir(f.decision)}">${esc(f.decision)}</div>${f.reason ? `<div class="why" dir="${dir(f.reason)}">${esc(f.reason)}</div>` : ''}</div></div>`;
+    }
+    const row = (cls, icon, label, t) => t ? `<div class="fabrow ${cls}"><img src="${img(icon)}" alt=""><div><div class="k">${label}</div><div class="t" dir="${dir(t)}">${esc(t)}</div></div></div>` : '';
+    return `<div class="disc"><div class="best">${stage(f.img, '', `<span class="tag">BEST FIT / ${esc(f.best)}</span><img class="pc-seal" src="${img('seal.webp')}" alt="">`)}
+        <div class="pc-name" style="text-align:center" dir="auto">${esc(f.product)}</div></div>
+      <div class="fab">${row('f', 'ic-feature.webp', 'F | FEATURE', f.f)}${row('a', 'ic-advantage.webp', 'A | ADVANTAGE', f.a)}${row('b', 'ic-benefit.webp', 'B | BENEFIT', f.b)}</div></div>`;
+  };
+  return {
+    key: 'pb', title: 'The Product Battle', heroSub: 'Pick the best-fit product for every case.',
+    heroArt: `<img class="vs" src="${img('vs.webp')}" alt="">`,
+    newRunTitle: 'Start a new battle', startLabel: 'Start Battle 01 →', unit: 'Battle', learnerArenaClass: 'larena',
+    words: { fast: 'Fastest best fit! 🥇', ok: 'Best fit! Great pick.', no: 'Not the best fit this time.', base: 'best fit' },
+    optionsHTML,
+    markCorrect: c => { const st = $('.pc-stage', c); if (st) st.insertAdjacentHTML('beforeend', `<img class="pc-seal" src="${img('seal.webp')}" alt="Best fit">`); },
+    trainerQuestion: (it, s) => `${head(it)}${stemBar(it)}${s.phase === 'open' ? bonusLine() : ''}<div class="arena" id="arena">${optionsHTML(it, true)}</div>`,
+    trainerDiscussion: it => `${head(it)}${discussion(it)}<p class="muted" style="font-size:12px;margin-top:16px">Participants see these discussion points on their phones.</p>`,
+    learnerQuestion: it => `${head(it)}${stemBar(it)}`,
+    learnerRevealHead: it => head(it),
+    learnerDiscussion: (it, s, answers) => {
+      const f = it.fab || {};
+      const mine = answers[it.id.replace(/-D$/, '-Q')];
+      const pick = mine ? `<div class="mypick"><span style="font-size:20px">${mine === f.best ? '✅' : '🔁'}</span><div>Your pick: <b>${esc(mine)}</b>${mine === f.best ? ' — best fit!' : ' · Best fit: <b>' + esc(f.best) + '</b>'}</div></div>` : '';
+      return `${head(it)}${pick}${discussion(it)}`;
+    }
+  };
+})();
+
+const SK = { trainer: ACT.key + '_trainer', run: ACT.key + '_trun', me: runId => ACT.key + '_p_' + runId };
+const RULES = '1 pt per correct · fastest 3 correct +3 / +2 / +1 · 🔥 streak +1';
+
+/* ============================ shared question UI ============================ */
 function bonusLine() { return `<div class="bonusline">⚡ <span>Fastest 3 correct answers earn <b>+3 / +2 / +1</b></span> · 🔥 <span>Correct in a row earns <b>+1</b></span></div>`; }
-function speedWall(rv, n) {
+function speedWall(rv) {
   const top = (rv && rv.top) || [];
   const streakers = rv && rv.pts ? Object.values(rv.pts).filter(x => x[3] >= 2).length : 0;
   if (!top.length && !streakers) return '';
   return `<div class="speedwall"><div class="ttl">⚡ Fastest<br>correct</div>${top.map((t, i) => `<div class="spd g${i + 1}"><div class="md">${i + 1}</div><div style="min-width:0"><div class="nm" dir="auto">${esc(t.n)}</div><small>${t.s}s</small></div><div class="bn">+${t.b}</div></div>`).join('')}
     ${streakers ? `<span class="streakchip" style="align-self:center">🔥 ${streakers} on a streak</span>` : ''}</div>`;
 }
-function stageHTML(src, letter, extra) {
-  return `<div class="pc-stage">${letter ? `<span class="pc-let">${letter}</span>` : ''}<img class="pc-pod" src="${img('podium.webp')}" alt="">
-    ${src ? `<img class="pc-prod" src="${img(src)}" alt="">` : '<span class="pc-empty">?</span>'}${extra || ''}</div>`;
-}
-function cardsHTML(it, opts) {
-  const keys = Object.keys(it.options);
-  return keys.map((k, i) => {
-    const o = it.options[k];
-    return (i && opts.vs ? '<span class="vsdot">VS</span>' : '') +
-      `<button class="pcard" data-k="${k}" type="button">${stageHTML(o.img, k)}
-        <div class="pc-name" dir="auto">${esc(o.t)}</div><span class="mine">Your pick</span>
-        <div class="pc-bar"><i></i><span><b class="n">0%</b><small class="c">0 votes</small></span></div></button>`;
-  }).join('');
-}
+// options are rendered by the activity as .pcard[data-k] elements, each with a .pc-bar
 function paintBars(root, counts, correct, show) {
   const total = Object.values(counts || {}).reduce((a, b) => a + b, 0);
   root.classList.toggle('bars', !!show);
@@ -556,26 +590,15 @@ function paintBars(root, counts, correct, show) {
     $('.pc-bar .c', c).textContent = n + (n === 1 ? ' vote' : ' votes');
     if (correct) {
       c.classList.toggle('correct', k === correct); c.classList.toggle('dim', k !== correct);
-      if (k === correct && !$('.pc-seal', c)) $('.pc-stage', c).insertAdjacentHTML('beforeend', `<img class="pc-seal" src="${img('seal.webp')}" alt="Best fit">`);
+      if (k === correct && !c.dataset.marked) { c.dataset.marked = 1; ACT.markCorrect(c); }
     }
   });
   return total;
 }
-function discussionHTML(it) {
-  const f = it.fab || {};
-  if (f.decision || f.reason) {
-    return `<div class="referral"><img src="${img(f.img || 'referral.webp')}" alt="">
-      <div><div class="dec" dir="${dir(f.decision)}">${esc(f.decision)}</div>${f.reason ? `<div class="why" dir="${dir(f.reason)}">${esc(f.reason)}</div>` : ''}</div></div>`;
-  }
-  const row = (cls, icon, label, t) => t ? `<div class="fabrow ${cls}"><img src="${img(icon)}" alt=""><div><div class="k">${label}</div><div class="t" dir="${dir(t)}">${esc(t)}</div></div></div>` : '';
-  return `<div class="disc"><div class="best">${stageHTML(f.img, '', `<span class="tag">BEST FIT / ${esc(f.best)}</span><img class="pc-seal" src="${img('seal.webp')}" alt="">`)}
-      <div class="pc-name" style="text-align:center" dir="auto">${esc(f.product)}</div></div>
-    <div class="fab">${row('f', 'ic-feature.webp', 'F | FEATURE', f.f)}${row('a', 'ic-advantage.webp', 'A | ADVANTAGE', f.a)}${row('b', 'ic-benefit.webp', 'B | BENEFIT', f.b)}</div></div>`;
-}
+function barHTML() { return `<div class="pc-bar"><i></i><span><b class="n">0%</b><small class="c">0 votes</small></span></div>`; }
 
 /* ============================ leaderboard ============================ */
 const LB = { runId: null, me: null, rows: [], lbv: -1, open: false, timer: null };
-const RULES = '1 pt per best fit · fastest 3 correct +3 / +2 / +1 · 🔥 streak +1';
 function initials(n) { return String(n || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase(); }
 function mountFab(runId, meKey) {
   LB.runId = runId; LB.me = meKey || null;
@@ -608,7 +631,7 @@ function renderDrawer() {
   const rows = LB.rows;
   $('#drawer').innerHTML = `<div class="row" style="justify-content:space-between"><div><div class="eyebrow" style="color:var(--orange)">Live</div><div class="h2">Leaderboard</div></div>
     <button class="btn ghost sm" id="lbClose">Close</button></div>${rows.length ? podiumHTML(rows) : ''}
-    <div class="list">${rows.length ? rowsHTML(rows) : '<div class="empty">Scores appear after the first battle is revealed.</div>'}</div>
+    <div class="list">${rows.length ? rowsHTML(rows) : '<div class="empty">Scores appear after the first answer is revealed.</div>'}</div>
     <div class="muted" style="font-size:11px;text-align:center;margin-top:8px">Session ${esc(LB.runId)} · ${RULES}</div>`;
   $('#lbClose').onclick = closeLB;
   const mine = $('#drawer .lbrow.me'); if (mine) mine.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -626,8 +649,8 @@ function goLanding(tab) {
   Poller.stop(); unmountFab(); setAccent('#188CCD'); setTop(''); document.body.classList.remove('has-submit');
   const t = tab || (params.get('tab') === 'trainer' ? 'trainer' : 'join');
   setApp(`<div class="center"><div class="hero glass strong stagger">
-    <img class="logo" src="${img('logo.webp')}" alt="United Pharmacy"><img class="vs" src="${img('vs.webp')}" alt="">
-    <div class="h1 title">The Product Battle</div><div class="sub">Pick the best-fit product for every case.</div>
+    <img class="logo" src="${img('logo.webp')}" alt="United Pharmacy">${ACT.heroArt || ''}
+    <div class="h1 title">${esc(ACT.title)}</div><div class="sub">${esc(ACT.heroSub)}</div>
     <div class="seg ${t === 'trainer' ? 'r' : ''}" id="seg"><div class="pill"></div>
       <button data-t="join" class="${t === 'join' ? 'on' : ''}">Join session</button><button data-t="trainer" class="${t === 'trainer' ? 'on' : ''}">Trainer</button></div>
     <div id="pane"></div></div></div>`);
@@ -647,7 +670,7 @@ function goLanding(tab) {
         e.preventDefault(); const b = $('#go'); b.disabled = true; b.innerHTML = '<span class="spinner"></span>';
         try {
           const r = await api('login', { username: $('#u').value, password: $('#p').value }, true, 1);
-          store.set('pb_trainer', { token: r.token, name: r.name, username: r.username, at: Date.now() });
+          store.set(SK.trainer, { token: r.token, name: r.name, username: r.username, at: Date.now() });
           goTrainerHome();
         } catch (err) { handleErr(err); b.disabled = false; b.textContent = 'Log in'; }
       };
@@ -662,17 +685,17 @@ const T = { auth: null, runId: null, data: null, key: '', busy: false };
 
 function trainerTop(extra) {
   setTop(`${extra || ''}<span class="chip">${esc(T.auth.name)}</span><button class="btn ghost sm" id="logout">Log out</button>`);
-  $('#logout').onclick = () => { store.del('pb_trainer'); store.del('pb_trun'); goLanding('trainer'); };
+  $('#logout').onclick = () => { store.del(SK.trainer); store.del(SK.run); goLanding('trainer'); };
 }
 
 async function goTrainerHome() {
   Poller.stop(); unmountFab(); setAccent('#188CCD');
-  T.auth = store.get('pb_trainer'); T.runId = null; store.del('pb_trun');
+  T.auth = store.get(SK.trainer); T.runId = null; store.del(SK.run);
   if (!T.auth) return goLanding('trainer');
   trainerTop();
   setApp(`<div class="row" style="justify-content:space-between;margin-bottom:20px"><div><div class="eyebrow">Trainer space</div><div class="h1">Welcome, ${esc(T.auth.name)}</div></div></div>
     <div class="grid-lobby stagger">
-      <div class="glass strong newcard"><div class="eyebrow" style="color:var(--orange)">New run</div><div class="h2">Start a new battle</div>
+      <div class="glass strong newcard"><div class="eyebrow" style="color:var(--orange)">New run</div><div class="h2">${esc(ACT.newRunTitle)}</div>
         <p class="muted">Creates a new session with its own tab in the sheet. Share the link or QR with participants.</p>
         <button class="btn orange lg" id="newRun">Start activity</button></div>
       <div><div class="h2" style="margin-bottom:12px">Previous activities</div><div class="runs" id="runs"><div class="glass empty"><span class="spinner" style="margin:auto"></span></div></div></div>
@@ -706,7 +729,7 @@ async function goTrainerHome() {
 }
 
 function openRun(runId) {
-  T.runId = runId; T.key = ''; T.data = null; store.set('pb_trun', runId);
+  T.runId = runId; T.key = ''; T.data = null; store.set(SK.run, runId);
   mountFab(runId, null);
   trainerTop(`<span class="chip"><span class="dot"></span>${esc(runId)}</span>`);
   setApp('<div class="center"><span class="spinner"></span></div>');
@@ -722,19 +745,18 @@ async function trainerTick() {
   if (s.lbv !== LB.lbv) loadLB().catch(() => {});
 }
 
-function stepLabel(o) { return `Battle ${pad2(o.battle)} · ${o.type === 'Question' ? 'Question' : 'Discussion'} — ${o.title}`; }
 function navHTML(d) {
   const s = d.state;
-  let lastB = null;
+  let lastRound = null;
   const dots = d.outline.map((o, i) => {
-    const sep = lastB !== null && lastB !== o.round ? '<span class="step sep"></span>' : ''; lastB = o.round;
-    const cls = [o.type === 'Question' ? '' : 'd', (o.done || (o.type !== 'Question' && i < s.idx)) ? 'done' : '', i === s.idx ? 'now' : ''].join(' ');
-    return `${sep}<button class="step ${cls}" style="--c:${esc(o.accent)}" data-go="${i}" title="${esc(stepLabel(o))}"></button>`;
+    const sep = lastRound !== null && lastRound !== o.round ? '<span class="step sep"></span>' : ''; lastRound = o.round;
+    const cls = [o.scored ? '' : 'd', (o.done || (!o.scored && i < s.idx)) ? 'done' : '', i === s.idx ? 'now' : ''].join(' ');
+    return `${sep}<button class="step ${cls}" style="--c:${esc(o.accent)}" data-go="${i}" title="${esc(o.label)}"></button>`;
   }).join('');
-  const opts = d.outline.map((o, i) => `<option value="${i}" ${i === s.idx ? 'selected' : ''}>${esc(stepLabel(o))}${o.type === 'Question' && o.done ? ' ✓' : ''}</option>`).join('');
+  const opts = d.outline.map((o, i) => `<option value="${i}" ${i === s.idx ? 'selected' : ''}>${i + 1}. ${esc(o.label)}${o.scored && o.done ? ' ✓' : ''}</option>`).join('');
   const atStart = s.idx <= 0, atEnd = s.idx >= d.outline.length;
   let main;
-  if (s.phase === 'lobby') main = `<button class="btn orange" id="mainBtn" data-op="next">Start Battle 01 →</button>`;
+  if (s.phase === 'lobby') main = `<button class="btn orange" id="mainBtn" data-op="next">${esc(ACT.startLabel)}</button>`;
   else if (s.phase === 'open') main = `<button class="btn orange" id="mainBtn" data-op="reveal">Reveal answer</button>`;
   else if (s.phase === 'ended') main = '';
   else main = `<button class="btn acc" id="mainBtn" data-op="next">${s.idx + 1 >= d.outline.length ? 'Finish →' : 'Next →'}</button>`;
@@ -774,16 +796,16 @@ async function navigate(to) {
   to = Math.max(0, Math.min(n, to));
   if (to === d.state.idx && d.state.phase !== 'lobby') return;
   if (d.state.phase === 'open') {
-    const ok = await confirmBox('Voting is still open', `Close voting for Battle ${pad2(d.item.battle)} and score the answers received so far before moving?`, 'Close & move', 'Stay here');
+    const ok = await confirmBox('Voting is still open', `Close voting for this question and score the answers received so far before moving?`, 'Close & move', 'Stay here');
     if (!ok) { const j = $('#jump'); if (j) j.value = d.state.idx; return; }
   }
   advance('goto', to);
 }
 async function advance(op, to) {
   if (T.busy) return; T.busy = true;
-  const b = $('#mainBtn'); if (b) { b.disabled = true; b.dataset.label = b.innerHTML; b.innerHTML = '<span class="spinner" style="border-top-color:#fff"></span>'; }
+  const b = $('#mainBtn'); if (b && op !== 'card') { b.disabled = true; b.dataset.label = b.innerHTML; b.innerHTML = '<span class="spinner" style="border-top-color:#fff"></span>'; }
   try { await api('advance', { token: T.auth.token, runId: T.runId, op, to: to == null ? '' : to, v: T.data ? T.data.state.v : '' }, true); T.key = ''; await trainerTick(); }
-  catch (e) { handleErr(e); if (b) { b.disabled = false; b.innerHTML = b.dataset.label; } }
+  catch (e) { handleErr(e); if (b && op !== 'card') { b.disabled = false; b.innerHTML = b.dataset.label; } }
   finally { T.busy = false; }
 }
 document.addEventListener('keydown', e => {
@@ -798,7 +820,7 @@ function renderTrainer() {
   setAccent(it ? it.accent : '#188CCD');
   if (s.phase === 'lobby') {
     const url = joinUrl(T.runId);
-    setApp(ctrlBar(d) + `<div class="lobbystage stagger"><div class="glass strong qrbox"><div class="eyebrow">Join the battle</div><div class="qr">${qrImg(url) || '<div class="empty">QR unavailable — share the link</div>'}</div>
+    setApp(ctrlBar(d) + `<div class="lobbystage stagger"><div class="glass strong qrbox"><div class="eyebrow">Join the session</div><div class="qr">${qrImg(url) || '<div class="empty">QR unavailable — share the link</div>'}</div>
         <div class="muted" style="font-size:12px;font-weight:700;letter-spacing:.1em">SESSION CODE</div><div class="joincode">${esc(T.runId)}</div>
         <div class="link">${esc(url)}</div><button class="btn block" id="cpl">Copy link</button></div>
       <div class="glass strong people"><div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Waiting room</div><div class="h2">Participants ready</div></div>
@@ -807,18 +829,18 @@ function renderTrainer() {
     $('#cpl').onclick = () => copy(url);
     T.shown = {}; patchTrainer();
   } else if (s.phase === 'open' || s.phase === 'revealed') {
-    setApp(ctrlBar(d) + `<div class="glass strong" style="padding:24px">${battleHead(it)}${stemBar(it)}${s.phase === 'open' ? bonusLine() : ''}
-      <div class="arena" id="arena">${cardsHTML(it, { vs: true })}</div>${s.phase === 'revealed' ? speedWall(s.reveal) : ''}
+    setApp(ctrlBar(d) + `<div class="glass strong tstage">${ACT.trainerQuestion(it, s)}
+      ${s.phase === 'revealed' ? speedWall(s.reveal) : ''}
       <div class="glass counter"><div class="ring" id="ring"><b id="ringT">0%</b></div><div><div class="big"><span id="ans">0</span> <span class="muted" style="font-size:18px">/ <span id="tot">0</span></span></div>
       <div class="lbl">${s.phase === 'open' ? 'participants answered · voting is open' : 'answered · results revealed'}</div></div></div></div>`, true);
     patchTrainer();
   } else if (s.phase === 'reflection') {
-    setApp(ctrlBar(d) + `<div class="glass strong" style="padding:24px">${battleHead(it)}${discussionHTML(it)}
-      <p class="muted" style="font-size:12px;margin-top:16px">Participants see these discussion points on their phones.</p></div>`, true);
+    setApp(ctrlBar(d) + `<div class="glass strong tstage">${ACT.trainerDiscussion(it, s)}</div>`, true);
+    if (ACT.bindTrainerDiscussion) ACT.bindTrainerDiscussion(it, s);
   } else if (s.phase === 'ended') {
-    setApp(ctrlBar(d, '<button class="btn" id="resBtn">Full results</button>') + `<div class="glass strong" style="padding:26px"><div class="eyebrow" style="color:var(--orange)">Battle complete</div>
+    setApp(ctrlBar(d, '<button class="btn" id="resBtn">Full results</button>') + `<div class="glass strong" style="padding:26px"><div class="eyebrow" style="color:var(--orange)">Activity complete</div>
       <div class="h1">Final leaderboard</div><div id="finalLb"><div class="empty"><span class="spinner" style="margin:auto"></span></div></div>
-      <p class="muted" style="font-size:12px;margin-top:12px">Click any step above to revisit a battle or discussion.</p></div>`, true);
+      <p class="muted" style="font-size:12px;margin-top:12px">Click any step above to revisit it.</p></div>`, true);
     $('#resBtn').onclick = () => showResults(T.runId);
     loadLB(true).then(() => { const f = $('#finalLb'); if (f) f.innerHTML = LB.rows.length ? podiumHTML(LB.rows) + '<div class="cols2" style="margin-top:16px">' + rowsHTML(LB.rows) + '</div>' : '<div class="empty">No answers recorded.</div>'; }).catch(handleErr);
   }
@@ -836,7 +858,7 @@ function patchTrainer() {
   } else if (s.phase === 'open' || s.phase === 'revealed') {
     const arena = $('#arena'); if (!arena) return;
     const counts = s.phase === 'open' ? d.live : (s.reveal && s.reveal.counts);
-    const total = paintBars(arena, counts || {}, s.phase === 'revealed' ? s.reveal.correct : '', true);
+    const total = paintBars(arena, counts || {}, s.phase === 'revealed' && s.reveal ? s.reveal.correct : '', true);
     const tot = d.participants.length;
     countUp($('#ans'), total, 500); $('#tot').textContent = tot;
     const p = tot ? Math.round(total * 100 / tot) : 0;
@@ -846,7 +868,7 @@ function patchTrainer() {
 
 async function showResults(runId) {
   Poller.stop(); unmountFab(); setAccent('#188CCD');
-  T.auth = T.auth || store.get('pb_trainer');
+  T.auth = T.auth || store.get(SK.trainer);
   trainerTop(`<span class="chip">${esc(runId)}</span>`);
   setApp('<div class="center"><span class="spinner"></span></div>');
   try {
@@ -857,7 +879,7 @@ async function showResults(runId) {
       <div class="board"><div class="glass strong" style="padding:22px"><div class="h2">Leaderboard</div>${r.leaderboard.length ? podiumHTML(r.leaderboard) + rowsHTML(r.leaderboard) : '<div class="empty">No participants yet.</div>'}</div>
       <div>${r.items.map(q => {
         const acc = q.answered ? Math.round(q.correct * 100 / q.answered) : 0;
-        return `<div class="glass qstat"><div class="row" style="justify-content:space-between"><b>Battle ${pad2(q.battle)} · ${esc(q.title)}</b><span class="muted" style="font-size:13px">${q.answered} answered</span></div>
+        return `<div class="glass qstat"><div class="row" style="justify-content:space-between"><b>${esc(q.label)}</b><span class="muted" style="font-size:13px">${q.answered} answered</span></div>
           <div class="accbar"><i style="width:${acc}%"></i></div>
           <div class="row" style="justify-content:space-between"><div class="dist">${Object.keys(q.counts).map(k => `<span class="${k === q.correctLetter ? 'c' : ''}">${k}: ${q.counts[k]}</span>`).join('')}</div><b>${q.answered ? acc + '% correct' : 'Not played'}</b></div></div>`;
       }).join('')}</div></div>`);
@@ -866,20 +888,19 @@ async function showResults(runId) {
 }
 
 /* ============================ learner ============================ */
-const L = { runId: null, me: null, v: '', state: null, item: null, total: 0, battles: 12, key: '', sending: false, pick: null };
-const meKey = runId => 'pb_p_' + runId;
+const L = { runId: null, me: null, v: '', state: null, item: null, total: 0, questions: 0, key: '', sending: false, pick: null };
 
 function learnerStart(runId) {
   L.runId = runId.toUpperCase();
-  L.me = store.get(meKey(L.runId));
+  L.me = store.get(SK.me(L.runId));
   setTop(`<span class="chip"><span class="dot"></span>${esc(L.runId)}</span>`);
   if (L.me && L.me.pid) return rejoinAndGo();
   showJoin();
 }
 function showJoin(err) {
   Poller.stop(); unmountFab();
-  setApp(`<div class="center"><div class="hero glass strong stagger"><img class="logo" src="${img('logo.webp')}" alt="United Pharmacy"><img class="vs" src="${img('vs.webp')}" alt="">
-    <div class="h1 title">The Product Battle</div><div class="sub">Session <b>${esc(L.runId)}</b> · enter your name to join</div>
+  setApp(`<div class="center"><div class="hero glass strong stagger"><img class="logo" src="${img('logo.webp')}" alt="United Pharmacy">${ACT.heroArt || ''}
+    <div class="h1 title">${esc(ACT.title)}</div><div class="sub">Session <b>${esc(L.runId)}</b> · enter your name to join</div>
     <form id="jf"><div class="field"><label>Full name</label><input id="nm" maxlength="40" autocomplete="name" required dir="auto"></div>
     <div class="field"><label>Employee ID <span style="text-transform:none;font-weight:600">(optional)</span></label><input id="em" maxlength="20" inputmode="numeric"></div>
     <button class="btn block lg" id="jb">Join session</button></form>${err ? `<p style="color:#b4560b;margin-top:12px;font-weight:600">${esc(err)}</p>` : ''}</div></div>`);
@@ -888,7 +909,7 @@ function showJoin(err) {
     try {
       const r = await api('join', { runId: L.runId, name: $('#nm').value, emp: $('#em').value }, true, 5);
       L.me = { pid: r.pid, k: r.k, name: r.name, emp: $('#em').value, answers: {} };
-      store.set(meKey(L.runId), L.me);
+      store.set(SK.me(L.runId), L.me);
       goLearnerLoop();
     } catch (err2) { const m = err2.message || ''; showJoin(/not found/i.test(m) ? 'Session code not found. Check the link with your trainer.' : m); }
   };
@@ -898,7 +919,7 @@ async function rejoinAndGo() {
   catch (e) {
     const m = e.message || '';
     if (/ended/i.test(m)) { goLearnerLoop(); return; }
-    if (/not found/i.test(m)) { store.del(meKey(L.runId)); return showJoin('Session code not found.'); }
+    if (/not found/i.test(m)) { store.del(SK.me(L.runId)); return showJoin('Session code not found.'); }
     handleErr(e); setTimeout(rejoinAndGo, 3000);
   }
 }
@@ -909,20 +930,20 @@ function goLearnerLoop() {
   Poller.start(learnerTick, () => CONFIG.POLL.learner);
 }
 async function learnerTick() {
-  const r = await api('state', { runId: L.runId, v: L.v });
+  const r = await api('state', { runId: L.runId, v: L.v, pid: L.me.pid });
   const lbv = r.same ? r.lbv : r.state.lbv;
-  if (lbv !== LB.lbv) setTimeout(() => loadLB().then(() => paintScore()).catch(() => {}), Math.random() * 1500);
+  if (lbv !== L.lbvSeen) { L.lbvSeen = lbv; setTimeout(() => loadLB().then(() => paintScore()).catch(() => {}), Math.random() * CONFIG.POLL.lbSpread); }
   if (r.same) return;
-  L.v = r.state.v; L.state = r.state; L.item = r.item; L.total = r.total; L.battles = r.battles || L.battles;
+  L.v = r.state.v; L.state = r.state; L.item = r.item; L.total = r.total; L.questions = r.questions || L.questions;
   const key = r.state.v + '|' + r.state.phase + '|' + r.state.idx;
   if (key !== L.key) { L.key = key; renderLearner(); }
 }
 function myRow() { return LB.rows.find(x => x.k === L.me.k); }
 function scoreBarHTML(bonus) {
   const r = myRow(); const pts = (r ? r.p : 0) + (bonus || 0);
-  const b = L.item ? Number(L.item.battle) : 0;
+  const q = L.item ? Number(L.item.qn) || 0 : 0;
   return `<div class="scorebar"><div class="glass"><b id="myPts" data-v="${pts}">${pts}</b><span>Points</span></div><div class="glass"><b id="myRank">${r ? '#' + r.r : '–'}</b><span>Rank</span></div>
-    <div class="glass"><b>${b || 0}<span style="font-size:14px;color:var(--muted)">/${L.battles}</span></b><span>Battle</span></div></div>`;
+    <div class="glass"><b>${q}<span style="font-size:14px;color:var(--muted)">/${L.questions}</span></b><span>${esc(ACT.unit)}</span></div></div>`;
 }
 function paintScore() {
   const r = myRow(); if (!r) return;
@@ -938,15 +959,15 @@ function renderLearner() {
   if (s.phase === 'lobby') {
     setApp(`<div class="lwrap"><div class="glass strong ready"><div class="check">${ICON.check}</div>
       <div class="h1" dir="auto">You're in, ${esc(L.me.name.split(' ')[0])}!</div>
-      <p class="muted" style="margin:10px 0 20px">Waiting for the trainer to start Battle 01 <span class="dots"><i></i><i></i><i></i></span></p>
+      <p class="muted" style="margin:10px 0 20px">Waiting for the trainer to start <span class="dots"><i></i><i></i><i></i></span></p>
       <span class="chip">Session ${esc(L.runId)}</span></div></div>`);
   } else if (s.phase === 'open') {
     const mine = (L.me.answers || {})[it.id];
     L.pick = mine || null;
-    setApp(`<div class="lwrap">${scoreBarHTML()}<div class="glass strong lcard">${battleHead(it)}${stemBar(it)}${bonusLine()}
-      <div class="larena ${mine ? 'locked' : ''}" id="arena">${cardsHTML(it, { vs: false })}</div>
+    setApp(`<div class="lwrap">${scoreBarHTML()}<div class="glass strong lcard">${ACT.learnerQuestion(it)}${bonusLine()}
+      <div id="arena" class="${ACT.learnerArenaClass} ${mine ? 'locked' : ''}">${ACT.optionsHTML(it, false)}</div>
       <div id="lstat"></div>
-      ${mine ? '' : `<div class="submitbar" id="sbar"><div class="hint" id="hint">Tap a product to choose it</div><button class="btn orange" id="submitBtn" disabled>Submit</button></div>`}</div></div>`);
+      ${mine ? '' : `<div class="submitbar" id="sbar"><div class="hint" id="hint">Tap an option to choose it</div><button class="btn orange" id="submitBtn" disabled>Submit</button></div>`}</div></div>`);
     if (mine) markPick(mine, true);
     else {
       setSubmitMode(true);
@@ -959,24 +980,22 @@ function renderLearner() {
     const my = (s.reveal && s.reveal.pts && s.reveal.pts[L.me.k]) || null; // [base, speed, streakBonus, streak]
     const ok = !!(mine && counted && mine === it.correct);
     const gained = my ? my[0] + my[1] + my[2] : 0;
-    const pending = gained && LB.lbv !== s.lbv ? gained : 0; // leaderboard not refreshed yet → show the new total right away
-    const msg = ok ? (my && my[1] === 3 ? 'Fastest best fit! 🥇' : 'Best fit! Great pick.') : (mine && !counted) ? 'Your answer arrived after voting closed.' : mine ? 'Not the best fit this time.' : 'You didn\'t answer this battle.';
-    const parts = my && ok ? [`<span>+${my[0]} best fit</span>`, my[1] ? `<span class="hot">⚡ +${my[1]} speed</span>` : '', my[2] ? `<span class="hot">🔥 +${my[2]} streak ×${my[3]}</span>` : ''].join('') : '';
+    const pending = gained && LB.lbv !== s.lbv ? gained : 0;
+    const W = ACT.words;
+    const msg = ok ? (my && my[1] === 3 ? W.fast : W.ok) : (mine && !counted) ? 'Your answer arrived after voting closed.' : mine ? W.no : 'You didn\'t answer this one.';
+    const parts = my && ok ? [`<span>+${my[0]} ${W.base}</span>`, my[1] ? `<span class="hot">⚡ +${my[1]} speed</span>` : '', my[2] ? `<span class="hot">🔥 +${my[2]} streak ×${my[3]}</span>` : ''].join('') : '';
     setApp(`<div class="lwrap">${scoreBarHTML(pending)}
       <div class="verdict ${ok ? 'ok' : 'no'}"><span class="em">${ok ? '🏆' : mine ? '💡' : '⏱️'}</span><div>${msg}${parts ? `<div class="breakdown">${parts}</div>` : ''}${!ok && mine && counted ? '<div class="breakdown"><span>Streak reset</span></div>' : ''}</div><span class="pts">+${gained}</span></div>
-      <div class="glass strong lcard">${battleHead(it)}<div class="larena locked" id="arena">${cardsHTML(it, { vs: false })}</div>${speedWall(s.reveal)}</div></div>`);
+      <div class="glass strong lcard">${ACT.learnerRevealHead(it)}<div id="arena" class="${ACT.learnerArenaClass} locked">${ACT.optionsHTML(it, false)}</div>
+      ${it.explanation ? `<div class="wait" dir="auto">${esc(it.explanation)}</div>` : ''}${speedWall(s.reveal)}</div></div>`);
     paintBars($('#arena'), (s.reveal && s.reveal.counts) || {}, it.correct, true);
     if (mine) markPick(mine, false);
     if (ok) { const v = $('.verdict'); const b = v.getBoundingClientRect(); setTimeout(() => sparkle(b.right - 40, b.top + b.height / 2), 250); }
   } else if (s.phase === 'reflection') {
-    const qid = it.id.replace(/-D$/, '-Q');
-    const mine = (L.me.answers || {})[qid];
-    const f = it.fab || {};
-    const pick = mine ? `<div class="mypick"><span style="font-size:20px">${mine === f.best ? '✅' : '🔁'}</span><div>Your pick: <b>${esc(mine)}</b>${mine === f.best ? ' — best fit!' : ' · Best fit: <b>' + esc(f.best) + '</b>'}</div></div>` : '';
-    setApp(`<div class="lwrap">${scoreBarHTML()}<div class="glass strong lcard">${battleHead(it)}${pick}${discussionHTML(it)}
+    setApp(`<div class="lwrap">${scoreBarHTML()}<div class="glass strong lcard">${ACT.learnerDiscussion(it, s, L.me.answers || {})}
       <div class="wait" style="margin-top:16px"><span class="dots"><i></i><i></i><i></i></span> Discussion time — follow your trainer</div></div></div>`);
   } else if (s.phase === 'ended') {
-    setApp(`<div class="lwrap"><div class="glass strong lcard"><div class="eyebrow" style="color:var(--orange)">Battle complete</div><div class="h1">Final leaderboard</div>
+    setApp(`<div class="lwrap"><div class="glass strong lcard"><div class="eyebrow" style="color:var(--orange)">Activity complete</div><div class="h1">Final leaderboard</div>
       <div id="finalLb"><div class="empty"><span class="spinner" style="margin:auto"></span></div></div></div></div>`);
     loadLB(true).then(() => {
       const f = $('#finalLb'); if (!f) return;
@@ -1011,7 +1030,7 @@ async function submitAnswer(itemId) {
       await api('join', { runId: L.runId, name: L.me.name, emp: L.me.emp || '', pid: L.me.pid }, true, 5);
       r = await send();
     }
-    L.me.answers = L.me.answers || {}; L.me.answers[itemId] = r.choice; store.set(meKey(L.runId), L.me);
+    L.me.answers = L.me.answers || {}; L.me.answers[itemId] = r.choice; store.set(SK.me(L.runId), L.me);
     const bar = $('#sbar'); if (bar) bar.remove(); setSubmitMode(false);
     markPick(r.choice, true);
   } catch (e) {
@@ -1034,7 +1053,7 @@ function boardStart(runId) {
     const r = await api('board', { runId, lbv: LB.lbv });
     if (r.same) return;
     LB.rows = r.rows; LB.lbv = r.lbv;
-    const sig = JSON.stringify(r.rows.map(x => [x.k, x.p]));
+    const sig = JSON.stringify(r.rows.map(x => [x.k, x.p, x.s]));
     if (sig === last) return; last = sig;
     $('#pod').innerHTML = r.rows.length ? podiumHTML(r.rows) : '<div class="empty">Scores appear after the first reveal.</div>';
     $('#list').innerHTML = rowsHTML(r.rows.slice(0, 40));
@@ -1051,9 +1070,9 @@ document.addEventListener('DOMContentLoaded', function boot() {
   const run = params.get('run'), view = params.get('view');
   if (run && view === 'board') return boardStart(run);
   if (run) return learnerStart(run);
-  const t = store.get('pb_trainer');
+  const t = store.get(SK.trainer);
   if (t && t.token && Date.now() - (t.at || 0) < 6 * 3600 * 1000) {
-    T.auth = t; const r = store.get('pb_trun');
+    T.auth = t; const r = store.get(SK.run);
     return r ? openRun(r) : goTrainerHome();
   }
   goLanding();
